@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{bootstrap-formhelpers, bootstrap-select, chosen.jquery, imagesloaded.pkgd, isotope.pkgd, jquery-ui, jquery.fittext, packery-mode.pkgd, packery.pkgd}" />
+  </component>
+</project>

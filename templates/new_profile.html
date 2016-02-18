@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+{% extends 'templates/base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/new_profile.css"/>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+    <script type="text/javascript" src="js/new_profile.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 content-col inner-div-shadow bg-theme-white rounded">
+            <div class="row">
+                {#        Profile Header#}
+                <div class="page-header primary-header">
+                    <h1 class="text-shadow-lg">Welcome To Culinary Coach!
+                        <br>
+                        <small><p class="text-right text-white">Create Your Account</p></small>
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <form id="profile-form" role="form" action="{{ profile_upload_url }}"
+                      method="POST"
+                      enctype="multipart/form-data">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 bg-theme-gray inner-div-shadow rounded"  style="margin-bottom: 2em;">
+                        {# Avatar Header#}
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <div class="page-header dark-theme-sm-header text-center">
+                                    <h1 class="text-shadow-lg">General Information</h1>
+                                </div>
+                            </div>
+                        </div>
+                        {# Avatar #}
+                        <div class="col-xs-12">
+                            <div class="circle-avatar-div center-col">
+                                <a href="" data-toggle="modal" data-target="#avatar-modal">
+                                    <img class="img-responsive center-block new-profile-avatar"
+                                         src="{{ defaultAvatar }}" id="avatar-img">
+                                </a>
+                            </div>
+                            {# Avatar Modal#}
+                            <div id="avatar-modal" class="modal fade" role="dialog" data-backdrop="true"
+                                 data-keyboard="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Choose Avatar</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label class="control-label sr-only" for="avatar-input"></label>
+                                                <label class="control-label sr-only" for="avatar-display"></label>
+
+                                                <div class="input-group"><span
+                                                        class="input-group-btn"><span
+                                                        class="btn btn-primary btn-file">Browse&hellip;
+                                                    <input type="file" name="avatar-input"
+                                                           id="avatar-input"></span></span>
+
+                                                    <label class="control-label sr-only"
+                                                           for="avatar-display"></label>
+                                                    <input required type="text" class="form-control"
+                                                           name="avatar-display" id="avatar-display"
+                                                           readonly>
+                                                </div>
+                                            </div>
+                                            <div class="avatar-form-info white-text">
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <button type="button" class="btn btn-sm btn-warning full-width"
+                                                            data-dismiss="modal">Cancel
+                                                    </button>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <button type="button" id="avatar-save"
+                                                            class="btn btn-sm btn-success full-width">Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {# End Modal #}
+                        </div>
+                        {# First Name #}
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <label class="control-label sr-only"
+                                       for="first-name">First Name</label>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">First Name</span>
+                                    <input required type="text" class="form-control"
+                                           name="first-name"
+                                           id="first-name"
+                                           placeholder="Joseph"/>
+                                </div>
+                            </div>
+                        </div>
+                        {# Last Name #}
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <label class="control-label sr-only"
+                                       for="first-name">Last Name</label>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">Last Name</span>
+                                    <input required type="text" class="form-control"
+                                           name="last-name"
+                                           id="last-name"
+                                           placeholder="Smith"/>
+                                </div>
+                            </div>
+                        </div>
+                        {# Contact Header#}
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="page-header light-theme-sm-header text-center">
+                                    <h1 class="text-shadow-lg">Contact Information</h1>
+                                </div>
+                            </div>
+                        </div>
+                        {# Email #}
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                <label class="control-label sr-only"
+                                       for="email">Email</label>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">Email</span>
+                                    <input readonly required type="text" class="form-control"
+                                           name="email"
+                                           id="email"
+                                           placeholder="{{ user_email }}"
+                                           value="{{ user_email }}"/>
+                                </div>
+                            </div>
+                        </div>
+                        {# Phones #}
+                        <div class="phones">
+                            <div class="phone">
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <div class="form-group">
+                                        <label class="control-label sr-only"
+                                               for="phone-number">Phone Number</label>
+                                        <label class="control-label sr-only"
+                                               for="phone-type">Phone Type</label>
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon phone-picker select-primary">
+                                                <select name="phone-type-select" data-style="btn-primary"
+                                                        data-width="fit"
+                                                        class="selectpicker form-control">
+                                                    <option data-icon="glyphicon-home" value="home">Phone</option>
+                                                    <option data-icon="glyphicon-phone" value="cell">Phone</option>
+                                                    <option data-icon="glyphicon-briefcase" value="work">Phone</option>
+                                                </select>
+                                                <input hidden type="text" name="phone-type" class="phone-type">
+                                            </span>
+                                            <input required type="text"
+                                                   class="form-control bfh-phone"
+                                                   data-format="ddd-ddd-dddd"
+                                                   name="phone-number"
+                                                   placeholder="123-456-7890"/>
+
+                                        <span class="input-group-btn add-phone-btn">
+                                            <button type="button" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# Address Header#}
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="page-header accent-theme-sm-header text-center">
+                                    <h1 class="text-shadow-lg">Address Information</h1>
+                                </div>
+                            </div>
+                        </div>
+                        {# Address #}
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <div class="form-group">
+                                {#Street#}
+                                <div class="form-group">
+                                    <label class="control-label sr-only"
+                                           for="address-street">Street</label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Street</span>
+                                        <input type="text" class="form-control"
+                                               name="address-street"
+                                               id="address-street"
+                                               placeholder="123 Main Street"/>
+                                    </div>
+                                </div>
+                                {#Apartment#}
+                                <div class="form-group">
+                                    <label class="control-label sr-only"
+                                           for="address-apt">Apartment</label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Apt.</span>
+                                        <input type="text" class="form-control"
+                                               name="address-apt"
+                                               id="address-apt"
+                                               placeholder="Apartment 789"/>
+                                    </div>
+                                </div>
+                                {#City#}
+                                <div class="form-group">
+                                    <label class="control-label sr-only"
+                                           for="address-city">City</label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">City</span>
+                                        <input type="text" class="form-control"
+                                               name="address-city"
+                                               id="address-city"
+                                               placeholder="Anytown"/>
+                                    </div>
+                                </div>
+                                {#State#}
+                                <div class="form-group">
+                                    <label class="control-label sr-only"
+                                           for="address-state">State</label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">State</span>
+                                        <select id="address-state"
+                                                class="form-control bfh-states" data-blank="false"
+                                                name="address-state"
+                                                data-country="US" data-state="AL"></select>
+                                    </div>
+                                </div>
+                                {#Zip#}
+                                <div class="form-group">
+                                    <label class="control-label sr-only"
+                                           for="address-zip">Zip</label>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Zip</span>
+                                        <input type="number" class="form-control"
+                                               name="address-zip"
+                                               id="address-zip"
+                                               placeholder="12345"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {# Submit#}
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label class="control-label sr-only"
+                                           for="submit-btn">Submit</label>
+
+                                    <div class="input-group submit">
+                                        <input type="button" id="submit-btn" name="submit-btn"
+                                               class="btn btn-lg btn-success submit" value="SUBMIT">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+    </div>
+{% endblock %}

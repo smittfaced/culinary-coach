@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+{% extends 'templates/base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/css/bootstrap-select.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/profile.css"/>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.9.4/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+    <script type="text/javascript"
+            src="http://rawgit.com/metafizzy/isotope-packery/master/packery-mode.pkgd.js"></script>
+    <script type="text/javascript" src="js/profile.js"></script>
+{% endblock %}
+
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 content-col inner-div-shadow bg-theme-white rounded">
+            <div class="row">
+                {#        Profile Header#}
+                <div class="page-header primary-header">
+                    <h1 data-id="{{ urlID }}" class="text-shadow-lg" style="padding-left: 1em;">Welcome
+                        Back, {% if nickname %}{{ nickname }}{% else %}{{ firstname }}{% endif %}!
+                        <br>
+                        <small><p class="text-right text-white">{{ message }}</p></small>
+                    </h1>
+                </div>
+                {#        Profile#}
+                <div class="profile">
+                    {#Avatar#}
+                    <div class="col-lg-4 col-md-4">
+                        <div class="avatar bg-theme-accent overlay-base rounded inner-div-shadow-sm">
+                            <img class="img-responsive center-block rounded" alt="{{ avatar.filename }}"
+                                 src="{{ avatar_img }}" id="avatar-img">
+
+                            <div class="overlay-sm-bottom-right rounded">
+                                <span data-toggle="modal" data-target="#avatar-modal"
+                                      class="btn btn-xs glyphicon glyphicon-pencil"></span>
+                            </div>
+                            {# Avatar Modal#}
+                            <div id="avatar-modal" class="modal fade" role="dialog" data-backdrop="true"
+                                 data-keyboard="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Choose Avatar</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="avatar-form" role="form" action="{{ uploadURL }}"
+                                                  method="POST"
+                                                  enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label class="control-label sr-only" for="avatar-input"></label>
+                                                    <label class="control-label sr-only" for="avatar-display"></label>
+
+                                                    <div class="input-group"><span
+                                                            class="input-group-btn"><span
+                                                            class="btn btn-primary btn-file">Browse&hellip;
+                                                        <input
+                                                                type="file" name="avatar-input"
+                                                                id="avatar-input"></span></span>
+
+                                                        <label class="control-label sr-only"
+                                                               for="avatar-display"></label>
+                                                        <input required type="text" class="form-control"
+                                                               name="avatar-display" id="avatar-display"
+                                                               readonly>
+
+                                                        <label class="control-label sr-only" for="studentID"></label>
+                                                        <input required type="hidden" class="form-control"
+                                                               id="studentID" name="studentID"
+                                                               value="{{ urlID }}">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div style="font-size: 0.75em;" class="avatar-form-info text-white">
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <button type="button" class="btn btn-sm btn-warning full-width"
+                                                            data-dismiss="modal">Cancel
+                                                    </button>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <button type="button" id="avatar-save"
+                                                            class="btn btn-sm btn-success full-width">Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {#End Modal#}
+                        </div>
+                    </div>
+                    {#Name Date#}
+                    <div class="col-lg-6 col-md-8">
+                        <div class="bg-theme-gray inner-div-shadow-sm rounded text-center">
+                            <div class="accent-theme-sm-header">
+                                <p class="text-shadow-sm">{{ firstname }} {{ lastname }}</p>
+                            </div>
+                            <div class="date-text">
+                                <strong>Member Since: {{ date_joined }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    {# Theme #}
+                    <div class="col-lg-2 col-md-4">
+                        <div class="bg-theme-gray inner-div-shadow-sm rounded text-center">
+                            <div class="accent-theme-sm-header">
+                                <p class="text-shadow-sm">Theme</p>
+                            </div>
+                            <div class="theme-chooser" data-id="{{ urlID }}">
+                                <ul class="list-inline">
+                                    <li>
+                                        <div class="btn-group">
+                                            <button id="light-theme" data-id="css/light-overall.css" data-name="light"
+                                                    class="btn btn-toggle btn-sm {% if theme == 'light' %}btn-primary active{% else %}btn-default{% endif %}">
+                                                Light
+                                            </button>
+                                            <button id="dark-theme" data-id="css/dark-overall.css" data-name="dark"
+                                                    class="btn btn-toggle btn-sm {% if theme == 'dark' %}btn-primary active{% else %}btn-default{% endif %}">
+                                                Dark
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {#Nickname#}
+                    <div class="col-lg-4 col-md-4">
+                        <div class="bg-theme-gray overlay-base inner-div-shadow-sm rounded text-center">
+                            <div class="accent-theme-sm-header">
+                                <p class="text-shadow-sm">Nickname</p>
+                            </div>
+                            <div class="nickname-text">
+                                <strong class="">{{ nickname }}</strong>
+                            </div>
+                            <div class="overlay-sm-top-right">
+                                <span data-toggle="modal" data-target="#nickname-modal"
+                                      class="btn btn-xs glyphicon glyphicon-pencil"></span>
+                            </div>
+                            {# Nickname Modal#}
+                            <div data-id="{{ urlID }}" id="nickname-modal" class="modal fade" role="dialog"
+                                 data-backdrop="true"
+                                 data-keyboard="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Enter Nickname</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="nickname-form" role="form">
+                                                <div class="form-group">
+                                                    <label class="control-label sr-only" for="nickname-input"></label>
+                                                    <input required type="text" class="form-control"
+                                                           name="nickname-input"
+                                                           id="nickname-input" placeholder="Silly Sally"/>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <button type="button" class="btn btn-sm btn-warning full-width"
+                                                            data-dismiss="modal">Cancel
+                                                    </button>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <button type="button" id="nickname-save"
+                                                            class="btn btn-sm btn-success full-width">Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {#End Modal#}
+                        </div>
+                    </div>
+                    {#Phones#}
+                    {% for phone in phone %}
+                        {#Phones With Numbers#}
+                        {% if phone.number %}
+                            <div class="phone-col col-lg-4 col-md-4">
+                                <div class="bg-theme-gray overlay-base inner-div-shadow-sm rounded text-center">
+                                    <div data-glyphType="{{ phone.type }}"
+                                         class="accent-theme-sm-header">
+                                        <p class="text-shadow-sm">{{ phone.type|title }} Phone</p>
+                                    </div>
+                                    <div class="phone-text">
+                                        <strong>{{ phone.number }}</strong>
+                                    </div>
+                                    <div class="overlay-sm-top-right">
+                                    <span data-toggle="modal" data-target="#phone-{{ loop.index }}-modal"
+                                          class="btn btn-xs glyphicon glyphicon-pencil"></span>
+                                    </div>
+                                    {# Phone Modal#}
+                                    <div data-id="{{ urlID }}" id="phone-{{ loop.index }}-modal" class="modal fade"
+                                         role="dialog"
+                                         data-backdrop="true"
+                                         data-keyboard="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Enter {{ phone.type|title }} Phone</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {#Beginning of Form#}
+                                                    <form id="phone-{{ loop.index }}-form" class="form-horizontal"
+                                                          role="form">
+                                                        {#Number#}
+                                                        <div class="form-group">
+                                                            <div style="margin-left: 15px; margin-right: 15px">
+                                                                <label class="control-label sr-only"
+                                                                       for="phone-{{ loop.index }}-number">Number</label>
+                                                                <input required type="text"
+                                                                       class="form-control bfh-phone"
+                                                                       data-format="ddd-ddd-dddd"
+                                                                       data-type="{{ phone.type }}"
+                                                                       name="phone-{{ loop.index }}-number"
+                                                                       id="phone-{{ loop.index }}-number"
+                                                                        {#                                                               placeholder="123-456-7890" style="margin-left: 15px; width: 90%"/>#}
+                                                                       placeholder="123-456-7890"/></div>
+                                                        </div>
+                                                    </form>
+                                                    {#Delete Existing#}
+                                                    <div>
+                                                        <button id="phone-{{ loop.index }}-delete" type="button"
+                                                                class="btn btn-sm btn-danger full-width phone-delete"
+                                                                data-dismiss="modal">Delete Existing
+                                                        </button>
+                                                    </div>
+                                                    {#End of Form#}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <button id="phone-{{ loop.index }}-cancel" type="button"
+                                                                    class="btn btn-sm btn-warning full-width"
+                                                                    data-dismiss="modal">Cancel
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <button type="button" id="phone-{{ loop.index }}-save"
+                                                                    class="btn btn-sm btn-success full-width phone-save">
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {#End Modal#}
+                                </div>
+                            </div>
+                            {#Phones Without Numbers#}
+                        {% else %}
+                            <div class="phone-col col-lg-2 col-md-4">
+                                <div class="bg-theme-gray overlay-base inner-div-shadow-sm rounded text-center">
+                                    <div data-glyphType="{{ phone.type }}"
+                                         class="accent-theme-sm-header">
+                                        <p class="text-shadow-sm">Phone</p>
+                                    </div>
+                                    <div class="phone-text">
+                                    <span data-toggle="modal" data-target="#phone-{{ loop.index }}-modal"
+                                          class="btn btn-xs glyphicon glyphicon-{% if phone.type == 'home' %}home{% elif phone.type == 'cell' %}phone{% elif phone.type == 'work' %}briefcase{% endif %}"></span>
+                                    </div>
+                                    <div class="overlay-sm-top-right">
+                                    <span data-toggle="modal" data-target="#phone-{{ loop.index }}-modal"
+                                          class="btn btn-xs glyphicon glyphicon-pencil"></span>
+                                    </div>
+                                    {# Phone Modal#}
+                                    <div data-id="{{ urlID }}" id="phone-{{ loop.index }}-modal" class="modal fade"
+                                         role="dialog"
+                                         data-backdrop="true"
+                                         data-keyboard="true">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Enter {{ phone.type|title }} Phone</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {#Beginning of Form#}
+                                                    <form id="phone-{{ loop.index }}-form" class="form-horizontal"
+                                                          role="form">
+                                                        {#Number#}
+                                                        <div class="form-group">
+                                                            <div style="margin-left: 15px; margin-right: 15px">
+                                                                <label class="control-label sr-only"
+                                                                       for="phone-{{ loop.index }}-number">Number</label>
+                                                                <input required type="text"
+                                                                       class="form-control bfh-phone"
+                                                                       data-format="ddd-ddd-dddd"
+                                                                       data-type="{{ phone.type }}"
+                                                                       name="phone-{{ loop.index }}-number"
+                                                                       id="phone-{{ loop.index }}-number"
+                                                                        {#                                                               placeholder="123-456-7890" style="margin-left: 15px; width: 90%"/>#}
+                                                                       placeholder="123-456-7890"/></div>
+                                                        </div>
+                                                    </form>
+                                                    {#Delete Existing#}
+                                                    <div>
+                                                        <button id="phone-{{ loop.index }}-delete" type="button"
+                                                                class="btn btn-sm btn-danger full-width phone-delete"
+                                                                data-dismiss="modal">Delete Existing
+                                                        </button>
+                                                    </div>
+                                                    {#End of Form#}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <button id="phone-{{ loop.index }}-cancel" type="button"
+                                                                    class="btn btn-sm btn-warning full-width"
+                                                                    data-dismiss="modal">Cancel
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <button type="button" id="phone-{{ loop.index }}-save-"
+                                                                    class="btn btn-sm btn-success full-width phone-save">
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {#End Modal#}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {#Addresses#}
+                    {% for address in address %}
+                        {% if address.street %}
+                            <div class="address-col col-lg-4 col-md-6 col-xs-12 pull-right">
+                                <div class="bg-theme-gray overlay-base inner-div-shadow-sm rounded text-center">
+                                    <div class="accent-theme-sm-header">
+                                        <p class="text-shadow-sm">{{ address.type|title }} Address</p>
+                                    </div>
+                                    <div class="address-text">
+                                        <strong class="">{{ address.street }}{% if address.street2 %},
+                                            {{ address.street2 }}{% endif %}<br>
+                                            {{ address.city }}, {{ address.state }} {{ address.zip }}</strong>
+                                    </div>
+                                    <div class="overlay-sm-top-right">
+                                    <span data-toggle="modal" data-target="#address-{{ loop.index }}-modal"
+                                          class="btn btn-xs glyphicon glyphicon-pencil"></span>
+                                    </div>
+                                    {# Address Modal#}
+                                    <div data-id="{{ urlID }}" id="address-{{ loop.index }}-modal" class="modal fade"
+                                         role="dialog"
+                                         data-backdrop="true"
+                                         data-keyboard="true" data-type="{{ address.type }}">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Enter {{ address.type|title }} Address</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {#Beginning of Form#}
+                                                    <form id="address-{{ loop.index }}-form" class="form-horizontal"
+                                                          role="form">
+                                                        <div style="margin-left: 15px; margin-right: 15px">
+                                                            {#Street#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-street">Street</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">Street</span>
+                                                                    <input required type="text" class="form-control"
+                                                                           name="address-{{ loop.index }}-street"
+                                                                           id="address-{{ loop.index }}-street"
+                                                                           placeholder="123 Main Street"/>
+                                                                </div>
+                                                            </div>
+                                                            {#Apartment#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-apt">Apartment</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">Apt.</span>
+                                                                    <input type="text" class="form-control"
+                                                                           name="address-{{ loop.index }}-apt"
+                                                                           id="address-{{ loop.index }}-apt"
+                                                                           placeholder="Apartment 789"/>
+                                                                </div>
+                                                            </div>
+                                                            {#City#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-city">City</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">City</span>
+                                                                    <input required type="text" class="form-control"
+                                                                           name="address-{{ loop.index }}-city"
+                                                                           id="address-{{ loop.index }}-city"
+                                                                           placeholder="Anytown"/>
+                                                                </div>
+                                                            </div>
+                                                            {#State#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-state">State</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">State</span>
+                                                                    <select required id="address-{{ loop.index }}-state"
+                                                                            class="form-control bfh-states"
+                                                                            data-blank="false"
+                                                                            name="address-{{ loop.index }}-state"
+                                                                            data-country="US" data-state="AL"></select>
+                                                                </div>
+                                                            </div>
+                                                            {#Zip#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-zip">Zip</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">Zip</span>
+                                                                    <input required type="number" class="form-control"
+                                                                           name="address-{{ loop.index }}-zip"
+                                                                           id="address-{{ loop.index }}-zip"
+                                                                           placeholder="12345"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    {#Delete Existing#}
+                                                    <div>
+                                                        <button id="address-{{ loop.index }}-delete" type="button"
+                                                                class="btn btn-sm btn-danger full-width address-delete"
+                                                                data-dismiss="modal">Delete Existing
+                                                        </button>
+                                                    </div>
+                                                    {#End of Form#}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <button id="address-{{ loop.index }}-cancel" type="button"
+                                                                    class="btn btn-sm btn-warning full-width"
+                                                                    data-dismiss="modal">Cancel
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <button type="button" id="address-{{ loop.index }}-save"
+                                                                    class="btn btn-sm btn-success full-width address-save">
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {#End Modal#}
+                                </div>
+                            </div>
+                            {#  Missing Address #}
+                        {% else %}
+                            <div class="address-col col-lg-2 col-md-4 col-xs-12 pull-right">
+                                <div class="bg-theme-gray overlay-base inner-div-shadow-sm rounded text-center">
+                                    <div class="accent-theme-sm-header">
+                                        <p class="text-shadow-sm">Address</p>
+                                    </div>
+                                    <div class="address-text">
+                                        <span data-toggle="modal" data-target="#address-{{ loop.index }}-modal"
+                                              class="btn btn-xs glyphicon glyphicon-home"></span>
+                                    </div>
+                                    <div class="overlay-sm-top-right">
+                                    <span data-toggle="modal" data-target="#address-{{ loop.index }}-modal"
+                                          class="btn btn-xs glyphicon glyphicon-pencil"></span>
+                                    </div>
+                                    {# Address Modal#}
+                                    <div data-id="{{ urlID }}" id="address-{{ loop.index }}-modal" class="modal fade"
+                                         role="dialog"
+                                         data-backdrop="true"
+                                         data-keyboard="true" data-type="{{ address.type }}">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Enter {{ address.type|title }} Address</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {#Beginning of Form#}
+                                                    <form id="address-{{ loop.index }}-form" class="form-horizontal"
+                                                          role="form">
+                                                        <div style="margin-left: 15px; margin-right: 15px">
+                                                            {#Street#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-street">Street</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">Street</span>
+                                                                    <input required type="text" class="form-control"
+                                                                           name="address-{{ loop.index }}-street"
+                                                                           id="address-{{ loop.index }}-street"
+                                                                           placeholder="123 Main Street"/>
+                                                                </div>
+                                                            </div>
+                                                            {#Apartment#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-apt">Apartment</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">Apt.</span>
+                                                                    <input type="text" class="form-control"
+                                                                           name="address-{{ loop.index }}-apt"
+                                                                           id="address-{{ loop.index }}-apt"
+                                                                           placeholder="Apartment 789"/>
+                                                                </div>
+                                                            </div>
+                                                            {#City#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-city">City</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">City</span>
+                                                                    <input required type="text" class="form-control"
+                                                                           name="address-{{ loop.index }}-city"
+                                                                           id="address-{{ loop.index }}-city"
+                                                                           placeholder="Anytown"/>
+                                                                </div>
+                                                            </div>
+                                                            {#State#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-state">State</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">State</span>
+                                                                    <select required id="address-{{ loop.index }}-state"
+                                                                            class="form-control bfh-states"
+                                                                            data-blank="false"
+                                                                            name="address-{{ loop.index }}-state"
+                                                                            data-country="US" data-state="AL"></select>
+                                                                </div>
+                                                            </div>
+                                                            {#Zip#}
+                                                            <div class="form-group">
+                                                                <label class="control-label sr-only"
+                                                                       for="address-{{ loop.index }}-zip">Zip</label>
+
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">Zip</span>
+                                                                    <input required type="number" class="form-control"
+                                                                           name="address-{{ loop.index }}-zip"
+                                                                           id="address-{{ loop.index }}-zip"
+                                                                           placeholder="12345"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    {#Delete Existing#}
+                                                    <div>
+                                                        <button id="address-{{ loop.index }}-delete" type="button"
+                                                                class="btn btn-sm btn-danger full-width address-delete"
+                                                                data-dismiss="modal">Delete Existing
+                                                        </button>
+                                                    </div>
+                                                    {#End of Form#}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <button id="address-{{ loop.index }}-cancel" type="button"
+                                                                    class="btn btn-sm btn-warning full-width"
+                                                                    data-dismiss="modal">Cancel
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <button type="button" id="address-{{ loop.index }}-save"
+                                                                    class="btn btn-sm btn-success full-width address-save">
+                                                                Save
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {#End Modal#}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row hide-row">
+                <div class="text-center">
+                    <span class="btn btn-sm label label-default outer-div-shadow profile-btn scroll-button"><span
+                            class="glyphicon glyphicon-menu-up"></span></span>
+                </div>
+            </div>
+            {#        Recipe Header#}
+            <div class="row recipe-filter-bg">
+                <div class="page-header primary-header text-center">
+                    <h1 id="recipe-header" class="text-shadow-lg">Recipes</h1>
+                </div>
+                {#        Recipe Filtering and Sorting#}
+                <div hidden class="row recipe-filter-row">
+                    <div class="col-xs-10 col-xs-offset-1 rounded outer-div-shadow-sm bg-theme-accent">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="recipe-filter input-group">
+                                <span class="input-group-addon"><span
+                                        class="recipe-filter-icon glyphicon glyphicon-text-background"></span></span>
+                                <input id="recipe-name-search" type="text" class="name-search form-control"
+                                       placeholder="Filter by Title"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="recipe-filter input-group">
+                                <span class="input-group-addon"><span
+                                        class="recipe-filter-icon glyphicon glyphicon-th-list"></span></span>
+                                <input id="recipe-cat-search" type="text" class="category-search form-control"
+                                       placeholder="Filter by Category (ex. Mexican)"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {#        Recipes#}
+            <div class="row recipe-row" data-id="{{ urlID }}">
+                <div class="col-xs-12">
+                    <div class="rounded inner-div-shadow">
+                        <div class="isotope-grid-fav"></div>
+                    </div>
+                    <div class="isotope-grid">
+                        <div class="grid-sizer"></div>
+                        {% for recipe in recipes %}
+                            <div class="grid-item{% if recipe.favorite %} grid-item-fav{% endif %} overlay-base">
+                                {# Filters#}
+                                <div class="filter-classes{% for category in recipe.categories %} {{ category }}{% endfor %}"></div>
+                                {# Avatar Image#}
+                                <div class="rounded outer-div-shadow-sm">
+                                    <img class="recipe-img rounded" src="{{ recipe.avatar }}" data-id="{{ urlID }}">
+                                </div>
+                                {# Recipe Name#}
+                                <div class="overlay-top-left text-white">
+                                    <div class="recipe-name-label {% if recipe.favorite %}fav-overlay light-theme-sm-header {% else %}dark-theme-sm-header {% endif %}text-center">
+                                        <p data-id="{{ recipe.urlID }}">{{ recipe.name }}</p>
+                                    </div>
+                                </div>
+                                {# Favorite Star#}
+                                <div class="recipe-favorite overlay-top-right text-right text-white">
+                                    <span class="btn glyphicon glyphicon-star stampable {% if recipe.favorite %}fav-select{% endif %}"></span>
+                                </div>
+                                {# Serves & Prep Time & Cook Time Overlay#}
+                                <div hidden class="overlay-recipe-details overlay-bottom-left">
+                                    <div class="recipe-detail">
+                                        <button class="btn btn-xs btn-success rounded" type="button">
+                                            SERVES&nbsp;&nbsp;<span style="margin-top: -2px;"
+                                                                    class="badge"> {{ recipe.serves }}</span>
+                                        </button>
+                                    </div>
+                                    <div class="recipe-detail">
+                                        <button class="btn btn-xs btn-warning rounded" type="button">
+                                            PREP&nbsp;&nbsp;<span style="margin-top: -2px;"
+                                                                  class="badge">{% if recipe.prepTime.hours %}
+                                            {{ recipe.prepTime.hours }}H&nbsp;{{ recipe.prepTime.minutes }}M
+                                            {% else %}{{ recipe.prepTime.minutes }}&nbsp;MIN{% endif %}</span>
+                                        </button>
+                                    </div>
+                                    <div class="recipe-detail">
+                                        <button class="btn btn-xs btn-danger rounded" type="button">
+                                            COOK&nbsp;&nbsp;<span style="margin-top: -2px;"
+                                                                  class="badge">{% if recipe.cookTime.hours %}
+                                            {{ recipe.cookTime.hours }}H&nbsp;{{ recipe.cookTime.minutes }}M
+                                            {% else %}{{ recipe.cookTime.minutes }}&nbsp;MIN{% endif %}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {#Scroll to Top of Recipes#}
+            <div class="row scroll-row">
+                <div class="text-center">
+                    <span class="btn btn-sm label label-default outer-div-shadow recipe-scroll-btn scroll-button"><span
+                            class="glyphicon glyphicon-triangle-top"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+    </div>
+{% endblock %}

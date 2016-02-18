@@ -1,0 +1,78 @@
+
+.left-menu-slide {
+    z-index: 3
+}
+
+.left-menu-slide-btn {
+    z-index: 1;
+    margin-top: 40px;
+    position: fixed;
+}
+
+.left-menu-panel {
+    z-index: 1;
+    position: fixed;
+    left: -15.625em;
+    width: 15.625em;
+}
+
+.nav-avatar-div {
+    float: none;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    width: 200px;
+}
+
+.nav-avatar {
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Navigation Labels */
+
+.nav-label {
+    margin-top: 1rem;
+    padding: 0.25em 0 0.25em 0;
+    font-family: Rockwell, Georgia, "Times New Roman", Times, serif;
+    font-size: 2.8rem;
+}
+
+.nav-label-dark {
+    background-color: #3A2E39;
+    -webkit-box-shadow: -0.2em 0 0 #3A2E39, 0.2em 0 0 #3A2E39, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.2em 0 0 #3A2E39, 0.2em 0 0 #3A2E39, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.2em 0 0 #3A2E39, 0.2em 0 0 #3A2E39, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+}
+
+.nav-label-light {
+    background-color: #643C56;
+    -webkit-box-shadow: -0.2em 0 0 #643C56, 0.2em 0 0 #643C56, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.2em 0 0 #643C56, 0.2em 0 0 #643C56, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.2em 0 0 #643C56, 0.2em 0 0 #643C56, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+}
+
+.nav-label-primary {
+    background-color: #403A5A;
+    -webkit-box-shadow: -0.2em 0 0 #403A5A, 0.2em 0 0 #403A5A, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.2em 0 0 #403A5A, 0.2em 0 0 #403A5A, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.2em 0 0 #403A5A, 0.2em 0 0 #403A5A, 0 0.1em 0.1em rgba(26, 26, 26, 0.5);
+}
+
+.nav-label.logout {
+    margin-top: 2em;
+}
+
+.copyright-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: Rockwell, Georgia, "Times New Roman", Times, serif;
+    font-size: 16px;
+    color: black;
+}
+
+

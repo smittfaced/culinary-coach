@@ -1,0 +1,60 @@
+application: culinarycoach-1026
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+#- url: /profile/.*
+#  script: profile.app
+#  login: required
+#- url: /admin/.*
+#  script: admin.app
+#  login: admin
+
+#- url: /bootstrapJS
+#  static_dir: node_modules/bootstrap/dist/js
+#- url: /bootstrapDIST
+#  static_dir: node_modules/bootstrap/dist
+#- url: /bigslide
+#  static_dir: node_modules/bigslide/dist
+#- url: /jquery
+#  static_dir: node_modules/jquery/dist
+#- url: /jqueryUI
+#  static_dir: node_modules/jquery-ui-1.11.4.custom/
+#- url: /masonry
+#  static_dir: node_modules/masonry-layout/dist
+#- url: /isotope
+#  static_dir: node_modules/isotope-docs
+#- url: /classie
+#  static_dir: node_modules/desandro-classie
+- url: /typography
+  static_dir: node_modules/typography
+#- url: /imagesloaded
+#  static_dir: node_modules/imagesloaded
+#- url: /bootgrid
+#  static_dir: node_modules/jquery-bootgrid/dist
+- url: /chosen
+  static_dir: node_modules/chosen_v1.4.2
+#- url: /less
+#  static_dir: node_modules/less/dist
+#- url: /bootstrap_chosen
+#  static_dir: node_modules/bootstrap-chosen
+#- url: /bs-select
+#  static_dir: node_modules/bootstrap-select/dist
+- url: /css
+  static_dir: css
+- url: /img
+  static_dir: img
+- url: /js
+  static_dir: js
+- url: /.*
+  script: main.app
+
+libraries:
+- name: django
+  version: latest
+- name: jinja2
+  version: latest
+- name: webapp2
+  version: latest

@@ -1,0 +1,81 @@
+
+
+.full-width {
+    width: 100%;
+}
+/*\*/
+/*Avatar Image and Modal CSS*/
+/**/
+.circle-avatar-div {
+    width: 14em;
+    height: 14em;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.new-profile-avatar {
+    height: 100%;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    cursor: inherit;
+    display: block;
+}
+
+input[readonly] {
+    background-color: white !important;
+    cursor: text !important;
+}
+
+/**/
+/*Phone Input CSS*/
+/**/
+.phone-picker {
+    padding: 0;
+    border: 0;
+}
+
+.dropdown-toggle {
+    border-top-right-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+}
+
+.input-group.bootstrap-select.form-control {
+    z-index: inherit;
+}
+
+.input-group-addon.default {
+    color: rgb(255, 255, 255);
+    background-color: rgb(135, 135, 135);
+    border-color: rgb(105, 105, 105);
+}
+
+.btn.submit, .input-group.submit {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.btn-group.bootstrap-select.form-control.fit-width {
+    border-radius: 6px;
+}

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+{% extends 'templates/base.html' %}
+
+{% block css %}
+    {#    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css"/>#}
+    <link rel="stylesheet" type="text/css" href="chosen/chosen.bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/admin.css"/>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="typography/autogrow.min.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+            <div class="row admin-command">
+                <div class="col-xs-12">
+                    <div class="admin-command-row row">
+                        <div role="button" id="add_recipe" class="header-div btn-lg btn-block btn-info">
+                            <h2 class="responsive-headline">Add New Recipe</h2>
+                        </div>
+                        {# CLICK HERE TO EXPAND#}
+                        <div hidden class="command-div">
+                            <form id="add-recipe-form" action="" method="POST"
+                                  enctype="multipart/form-data">
+                                <div class="row horizontal-input">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="add-avatar input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-default btn-file">
+                                                Avatar <input name="avatar_file" type="file">
+                                            </span>
+                                        </span>
+                                            <input type="text" class="form-control" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="add-images col-xs-12 col-sm-6">
+                                        <div class="add-image input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    Image <input name="sm_image" type="file">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control" readonly="">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-success add-btn-image-add">
+                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="horizontal-input input-group">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-warning">Recipe Name</span>
+                                </span>
+                                    <input type="text" class="form-control" name="recipe_name"
+                                           placeholder="Recipe Name">
+                                </div>
+                                <div class="row horizontal-input input-group">
+                                    <div class="category-search col-xs-12 col-sm-5">
+                                        <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-default"> Categories </span>
+                                        </span>
+                                            <input id="category-name-input" type="text" class="form-control"
+                                                   name="add_category">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success add-btn-category-add">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8 col-sm-5">
+                                        <div class="add-category-form">
+                                            <ul class="category-sortable">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2">
+                                        <span class="input-group-btn">
+                                            <div id="delete-category-btn" class="btn btn-block btn-danger">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="horizontal-input input-group">
+                                <span class="input-group-btn textarea-btn-group">
+                                    <span class="btn btn-default textarea-btn">Full Desc.</span>
+                                </span>
+                                <textarea class="form-control grow-textarea" name="full_description"
+                                          rows="1" placeholder="Full Description"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label class="btn btn-block btn-sm btn-warning" for="prep_time">Prep
+                                                Time</label>
+                                            <input type="number" class="form-control" name="prep_time"
+                                                   placeholder="Minutes">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label class="btn btn-block btn-sm btn-warning" for="cook_time">Cook
+                                                Time</label>
+                                            <input type="number" class="form-control" name="cook_time"
+                                                   placeholder="Minutes">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label class="btn btn-block btn-sm btn-warning" for="serves">Serves</label>
+                                            <input type="number" class="form-control" name="serves"
+                                                   placeholder="5">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-xs-12">
+                                        <div class="form-group">
+                                            <label class="btn btn-block btn-sm btn-default"
+                                                   for="directions">Directions</label>
+
+                                            <div class="add-directions">
+                                                <div class="sortable add-direction input-group">
+                                                    <div class="input-group-addon">1</div>
+                                                    <input type="text" name="direction" class="direction form-control">
+
+                                                    <div class="btn input-group-btn btn-success add-btn-direction-add">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-xs-12">
+                                        <div class="form-group">
+                                            <label class="btn btn-block btn-sm btn-default" for="ingredients">Ingredients</label>
+
+                                            <div class="add-ingredients">
+                                                <div class="sortable add-ingredient input-group">
+                                                    <div class="input-group-addon">1</div>
+                                                    <div class="ingredient-col col-xs-2">
+                                                        <div class="form-group">
+                                                            <label class="btn btn-block btn-sm btn-primary"
+                                                                   for="amount">Amt.</label>
+                                                            <input type="number" step="0.01" min="0"
+                                                                   class="form-control"
+                                                                   name="amount"
+                                                                   placeholder="1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="ingredient-col col-xs-2">
+                                                        <div class="form-group">
+                                                            <label class="btn btn-block btn-sm btn-primary"
+                                                                   for="unit">Unit</label>
+                                                            <input type="text" class="form-control" name="unit"
+                                                                   placeholder="oz">
+                                                        </div>
+                                                    </div>
+                                                    <div class="ingredient-col col-xs-4">
+                                                        <div class="form-group">
+                                                            <label class="btn btn-block btn-sm btn-primary"
+                                                                   for="name">Name</label>
+                                                            <input type="text" class="form-control" name="name"
+                                                                   placeholder="Avocado">
+                                                        </div>
+                                                    </div>
+                                                    <div class="ingredient-col col-xs-4">
+                                                        <div class="form-group">
+                                                            <label class="btn btn-block btn-sm btn-primary"
+                                                                   for="note">Note</label>
+                                                            <input type="text" class="form-control" name="note"
+                                                                   placeholder="Unripe Preferred">
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn input-group-btn btn-success add-btn-ingredient-add">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-xs-12">
+                                        <div class="form-group">
+                                            <label class="btn btn-block btn-sm btn-default"
+                                                   for="utilities">Utilities</label>
+
+                                            <div class="add-utilities">
+                                                <div class="sortable add-utility input-group">
+                                                    <div class="input-group-addon">1</div>
+                                                    <div class="col ingredient-col col-xs-4">
+                                                        <div class="form-group">
+                                                            <label class="btn btn-block btn-sm btn-primary">Name</label>
+                                                            <input type="text" class="form-control" name="util_name"
+                                                                   placeholder="High-Heat Spatula">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col ingredient-col col-xs-5">
+                                                        <div class="form-group">
+                                                            <label class="btn btn-block btn-sm btn-primary">Function</label>
+                                                            <input type="text" class="form-control"
+                                                                   name="util_function"
+                                                                   placeholder="Stirring in high-heat environments">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col ingredient-col col-xs-3">
+                                                        <div class="form-group">
+                                                            <label class="btn btn-block btn-sm btn-primary">URL</label>
+                                                            <input type="text" class="form-control" name="util_url"
+                                                                   placeholder="http://www.webstaurantstore.com/">
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn input-group-btn btn-success add-btn-utility-add">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button id="add-recipe-submit" type="submit" class="btn btn-block btn-lg btn-info">
+                                    Submit
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="admin-command-row row">
+                        <div role="button" id="edit_recipe" class="header-div btn-lg btn-block btn-primary">
+                            <h2 class="responsive-headline">Edit Existing Recipe</h2>
+                        </div>
+                        {# CLICK HERE TO EXPAND#}
+                        <div hidden class="command-div">
+                            <form action="/serve_recipe" method="GET" id="search-recipe-form">
+                                <div class="input-group recipe-search-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-sm btn-success">Recipe to Edit</span>
+                                    </span>
+                                    <select data-placeholder="Find Recipe" class="chosen-select recipe-search">
+                                        {% for recipe in all_recipes %}
+                                            <option value="{{ recipe.urlID }}">{{ recipe.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <span role="button" class="input-group-btn search-group-btn">
+                                        <span class="edit-recipe-search btn btn-sm btn-success chosen-btn-addon">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </form>
+                            {# THIS IS WHERE THE FORM IS APPENDED#}
+                            <form action="{{ recipe_update_url }}" id="edit-recipe-form" method="POST"
+                                  enctype="multipart/form-data">
+
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="admin-command-row row">
+                        <div role="button" id="edit_permissions" class="header-div btn-lg btn-block btn-default">
+                            <h2 class="responsive-headline">Recipe Access Permissions</h2>
+                        </div>
+                        {# CLICK HERE TO EXPAND#}
+                        <div hidden class="command-div">
+                            <form id="edit-permissions-form" action="{{ recipe_upload_url }}" method="POST"
+                                  enctype="multipart/form-data">
+                                <div class="row horizontal-input">
+                                    {# Recipe Search to Add/Remove Users #}
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="input-group permission-recipe-search-group transparent-bg">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-sm btn-success">Recipes</span>
+                                            </span>
+                                            <select data-placeholder="Find Recipe"
+                                                    class="chosen-select permission-recipe-search">
+                                                {% for recipe in all_recipes %}
+                                                    <option value="{{ recipe.urlID }}">{{ recipe.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <span role="button" class="input-group-btn search-group-btn">
+                                                <span class="edit-permission-recipe-search btn btn-sm btn-success chosen-btn-addon">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {# User Search to Add/Remove Access to Recipes #}
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="input-group permission-user-search-group transparent-bg">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-sm btn-success">Students</span>
+                                    </span>
+                                            <select data-placeholder="Find Students"
+                                                    class="chosen-select permission-student-search">
+                                                {% for student in all_students %}
+                                                    <option value="{{ student.urlID }}">{{ student.firstname }} {{ student.lastname }}</option>
+                                                {% endfor %}
+                                            </select>
+                                    <span role="button" class="input-group-btn search-group-btn">
+                                        <span class="edit-permission-student-search btn btn-sm btn-success chosen-btn-addon">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {# Display Users and Recipe ID#}
+                                <div class="row">
+                                    {# Display Recipe Info #}
+                                    <div class="col-sm-6 col-xs-12">
+                                        <div class="permission-recipe-display">
+
+                                        </div>
+                                    </div>
+                                    {# Display Users that Have Recipe Access #}
+                                    <div class="col-sm-6 col-xs-12">
+                                        {# THIS IS WHERE THE FORM IS APPENDED#}
+                                        <form action="" id="edit-recipe-form" method="POST"
+                                              enctype="multipart/form-data">
+                                            <div class="permission-user-display">
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </form>
+                            {# This is where the Stock Image Uploader is#}
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="button" class="btn btn-block" data-toggle="modal"
+                                            data-target="#stock-image-modal">
+                                        <p>Stock Image Uploader</p>
+                                    </button>
+                                </div>
+                                {#Stock Image Modal#}
+                                <div id="stock-image-modal" class="modal fade" role="dialog" data-backdrop="true"
+                                     data-keyboard="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Choose Stock Image</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="avatar-form" role="form" action="{{ stock_image_upload_url }}"
+                                                      method="POST"
+                                                      enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        <label class="control-label sr-only" for="stock-image"></label>
+
+                                                        <div class="input-group"><span
+                                                                class="input-group-btn"><span
+                                                                class="btn btn-primary btn-file">Browse&hellip;
+                                                            <input
+                                                                    type="file" name="stock-image"
+                                                                    id="stock-image"></span></span>
+
+                                                            <label class="control-label sr-only"
+                                                                   for="stock-image-display"></label>
+                                                            <input required type="text" class="form-control"
+                                                                   name="stock-image-display" id="stock-image-display"
+                                                                   readonly>
+                                                        </div>
+                                                        <br>
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <span class="btn btn-primary">Title</span>
+                                                            </span>
+
+                                                            <label class="control-label sr-only"
+                                                                   for="stock-image-name"></label>
+                                                            <input required type="text" class="form-control"
+                                                                   id="stock-image-name" name="stock-image-name">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="row">
+                                                    <div class="col-xs-6">
+                                                        <button type="button" class="btn btn-sm btn-warning full-width"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <button type="button" id="stock-image-save"
+                                                                class="btn btn-sm btn-success full-width">Save
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {#End Modal#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-2"></div>
+
+    </div>
+
+{% endblock %}

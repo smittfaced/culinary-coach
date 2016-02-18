@@ -1,0 +1,246 @@
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.category-sortable, .edit-category-sortable, .edit-image-sortable, .recipe-sortable {
+    list-style-type: none;
+}
+
+.category-sortable li, .edit-category-sortable li, .recipe-sortable li {
+    float: left;
+    padding: 0 2px 0 2px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.category-sortable div, .edit-category-sortable div, .recipe-sortable div {
+    margin-top: -6px;
+    margin-bottom: 11px;
+    height: 35px;
+}
+
+.edit-image-sortable li {
+    float: left;
+    padding: 0 2px 5px 2px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.edit-image-sortable label {
+    height: 35px;
+    position: absolute;
+}
+
+.edit-image-sortable .avatar-label {
+    left: 35px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.edit-image-sortable .avatar-star {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.edit-image-sortable .label-div :hover {
+    opacity: 0;
+}
+
+.edit-image-sortable div, .permission-display-avatar {
+    max-height: 100px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.glyphicon {
+    font-size: 12px;
+}
+
+.message-glyphicon {
+    font-size: 18px;
+}
+
+.horizontal-input, #search-recipe-form,
+.category-search, .edit-images {
+    margin-bottom: 10px;
+}
+
+.edit-image,
+.permission-recipe-search-group,
+.permission-recipe-display,
+.permission-user-search-group, #delete-recipe-btn, #save-user-btn,
+.add_direction:not(:first-of-type),
+.add_ingredient:not(:first-of-type),
+.add_utility:not(:first-of-type) {
+    margin-top: 10px;
+}
+
+.ingredient-col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.textarea-btn {
+    height: calc(101% + 20px);
+}
+
+/*Admin Page CSS*/
+
+.admin-command-row {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+/*Edit Recipe CSS*/
+
+.edit-add-image,
+.edit-add-avatar {
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    height: 100px;
+}
+
+.edit-add-image p,
+.edit-add-avatar p {
+    color: white;
+}
+
+.edit-add-image-overlay,
+.edit-add-avatar-overlay {
+    border-radius: 5px;
+    margin-bottom: 5px;
+    position: absolute;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+
+}
+
+.edit-add-image :hover .edit-add-image-overlay,
+.edit-add-avatar :hover .edit-add-avatar-overlay {
+    padding: 10px 10px 0 10px;
+    bottom: 0;
+    opacity: 1;
+    visibility: visible;
+    text-align: center;
+    position: center;
+}
+
+.name-label {
+    margin: 0;
+    padding: 2px 0 2px 0;
+}
+
+.name-label span {
+    display: block;
+}
+
+.nickname-label {
+    padding-bottom: 10px;
+}
+
+.top-user-area {
+    padding: 10px 0 10px 0;
+}
+
+.readonly-color::-webkit-input-placeholder {
+    color: #333333;
+}
+
+.address-addon {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.recipe-droppable {
+    min-height: 65px;
+    margin-top: 8px;
+    padding: 20px 0 20px 0;
+}
+
+.recipe-drop-active {
+    box-shadow: 0 0 2px 4px #99ff99;
+    background-color: #ccffcc;
+}
+
+.recipe-drop-failed {
+    box-shadow: 0 0 2px 4px #ff4d4d;
+    background-color: #ff9999;
+}
+
+.recipe-permission-info {
+    margin: 0;
+    padding: 10px 0 10px 0;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.permission-user-display {
+    margin: 10px 0 10px 0;
+    padding: 0 10px 0 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#add-recipe-form, #search-recipe-form, .transparent-bg {
+    box-sizing: content-box;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#save-user-btn, #delete-recipe-btn {
+    margin-bottom: 10px;
+}
+
+/*/!*All Large Devices*!/*/
+/*@media (max-width: 9999px) {*/
+
+    /*body {*/
+        /*background-color: lightskyblue;*/
+    /*}*/
+/*}*/
+
+/*/!*All Medium Devices*!/*/
+/*@media (max-width: 1200px) {*/
+
+    /*body {*/
+        /*background-color: darkorange;*/
+    /*}*/
+/*}*/
+
+/*/!*All Small Devices*!/*/
+/*@media (max-width: 992px) {*/
+
+    /*body {*/
+        /*background-color: lightcoral;*/
+    /*}*/
+/*}*/
+
+/*/!*All XSmall Devices*!/*/
+/*@media (max-width: 768px) {*/
+
+    /*body {*/
+        /*background-color: springgreen;*/
+    /*}*/
+/*}*/

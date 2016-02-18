@@ -1,0 +1,455 @@
+/*  */
+/* Sitewide CSS */
+/*  */
+
+/**/
+/* Colors */
+/**/
+
+:root {
+    --primary-color: #493657;
+    --comp-dark-color: #403A5A;
+    --comp-light-color: #643C56;
+}
+
+.bg-theme-primary {
+    background-color: #493657;
+}
+
+.bg-theme-light {
+    background-color: #643C56;
+}
+
+.bg-theme-dark {
+    background-color: #403A5A;
+}
+
+.bg-theme-highlight {
+    background-color: #ed9c2c;
+}
+
+.bg-theme-accent {
+    background-color: #79C99E;
+}
+
+.bg-theme-error {
+    background-color: #FF312E;
+}
+
+.bg-theme-white {
+    background-color: white;
+}
+
+.bg-theme-gray {
+    background-color: #f6f6f6;
+}
+
+/**/
+/* Media Queries*/
+/**/
+
+/*Small Height via Zoom*/
+@media screen and (max-height: 670px) {
+
+    .nav-avatar {
+        display: none;
+    }
+}
+
+/*All Large Devices*/
+@media (max-width: 9999px) {
+
+    html {
+        background-color: #EAEAEA;
+        font-size: 10px;
+    }
+
+    /* Isotope Grid Sizing */
+    .grid-item {
+        width: 39%;
+        margin: 0 0.5% 2% 0.5%;
+    }
+
+    .grid-item-1 {
+        width: 39%;
+    }
+
+    .grid-item-2 {
+        width: 29%;
+    }
+
+    .grid-item-3 {
+        width: 19%;
+    }
+
+    .grid-item-4 {
+        width: 19%;
+    }
+
+    .grid-item-5 {
+        width: 19%;
+    }
+
+    .grid-item-fav {
+        width: 31.3%;
+        margin: 0 1% 1% 1%;
+    }
+
+    /* clearfix */
+    .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+/*All Medium Devices*/
+@media (max-width: 1200px) {
+
+    html {
+        background-color: #EAEAEA;
+    }
+
+    /* Isotope Grid Sizing */
+    .grid-item {
+        width: 48%;
+        margin: 0 1% 2% 1%;
+    }
+
+    .grid-item-1 {
+        width: 48%;
+    }
+
+    .grid-item-2 {
+        width: 28%;
+    }
+
+    .grid-item-3 {
+        width: 28%;
+    }
+
+    .grid-item-4 {
+        width: 18%;
+    }
+
+    .grid-item-5 {
+        width: 18%;
+    }
+
+    .grid-item-fav {
+        width: 31.3%;
+        margin: 0 1% 2% 1%;
+    }
+
+    /* clearfix */
+    .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+/*All Small Devices*/
+@media (max-width: 992px) {
+
+    html {
+        background-color: #EAEAEA;
+    }
+
+    /* Isotope Grid Sizing */
+    .grid-item {
+        width: 47%;
+        margin: 0 1.5% 2.5% 1.5%;
+    }
+
+    .grid-item-1 {
+        width: 47%;
+    }
+
+    .grid-item-2 {
+        width: 47%;
+    }
+
+    .grid-item-3 {
+        width: 37%;
+    }
+
+    .grid-item-4 {
+        width: 37%;
+    }
+
+    .grid-item-5 {
+        width: 37%;
+    }
+
+    .grid-item-fav {
+        width: 47%;
+        margin: 0 1.5% 2% 1.5%;
+    }
+
+    /* clearfix */
+    .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+/*All XSmall Devices*/
+@media (max-width: 768px) {
+
+    html {
+        background-color: #EAEAEA;
+    }
+
+    /* Isotope Grid Sizing */
+    .grid-item {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-bottom: 2.75%;
+    }
+
+    .grid-item-1 {
+        width: 90%;
+    }
+
+    .grid-item-2 {
+        width: 90%;
+    }
+
+    .grid-item-3 {
+        width: 90%;
+    }
+
+    .grid-item-4 {
+        width: 90%;
+    }
+
+    .grid-item-5 {
+        width: 90%;
+    }
+
+    .grid-item-fav {
+
+    }
+
+    /* clearfix */
+    .grid:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+/**/
+/* Sitewide CSS */
+/**/
+
+/* Center column of 3-column bootstrap grid */
+.content-col {
+    margin: 2em 0 3em 0;
+}
+
+/*Div with content inside*/
+.content-div {
+    padding: 0.14em 0 0.14em 0;
+}
+
+/* Banner for Headers */
+.page-header {
+    margin-top: 0;
+    border-bottom: 0;
+    padding: 0 0.1rem 0.1rem 0.1rem;
+}
+
+.page-header > h1 {
+    font-family: Rockwell, Georgia, "Times New Roman", Times, serif;
+    font-size: 5rem;
+    color: white;
+}
+
+.page-sub-header {
+    margin-bottom: 0.5em;
+}
+
+.page-sub-header > h1 {
+    margin-bottom: 0;
+    padding: 0 0 0.1em 0;
+    font-size: 2.5em;
+}
+
+.text-shadow-lg {
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.5) -0.1rem 0, rgba(0, 0, 0, 0.3) 0 -0.1rem, rgba(255, 255, 255, 0.5) 0 0.1rem, rgba(0, 0, 0, 0.3) -0.1rem -0.2rem;
+}
+
+.text-shadow-sm {
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.5) -0.05rem 0, rgba(0, 0, 0, 0.3) 0 -0.05rem, rgba(255, 255, 255, 0.5) 0 0.05rem, rgba(0, 0, 0, 0.3) -0.05rem -0.1rem;
+}
+
+.text-white {
+    color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: snow;
+    text-decoration: none;
+}
+
+.rounded {
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+/*Overlay Classes*/
+
+.overlay-base {
+    position: relative;
+}
+
+.overlay-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.overlay-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.overlay-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.overlay-bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+/*Button Overlay Classes*/
+
+.overlay-sm-bottom-right {
+    position: absolute;
+    /*bottom: 1em;*/
+    /*right: 1em;*/
+    bottom: 0;
+    right: 0;
+}
+
+.overlay-sm-top-right {
+    position: absolute;
+    /*top: 1em;*/
+    /*right: 1em;*/
+    top: 0;
+    right: 0;
+}
+
+.scroll-button {
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+/**/
+/*  Shadow Boxes  */
+/**/
+/* Primary Colored Header Div Side-border Magic*/
+.primary-header {
+    width: 100%;
+    background-color: #493657;
+    -webkit-box-shadow: -0.5em 0 0 #493657, 0.5em 0 0 #493657, 0 0.5em 0.3em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.5em 0 0 #493657, 0.5em 0 0 #493657, 0 0.5em 0.3em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.5em 0 0 #493657, 0.5em 0 0 #493657, 0 0.5em 0.3em rgba(26, 26, 26, 0.5);
+}
+
+.primary-sm-header {
+    width: 100%;
+    background-color: #493657;
+    -webkit-box-shadow: -0.25em 0 0 #493657, 0.25em 0 0 #493657, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.25em 0 0 #493657, 0.25em 0 0 #493657, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.25em 0 0 #493657, 0.25em 0 0 #493657, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+}
+
+.dark-theme-sm-header {
+    width: 100%;
+    background-color: #403A5A;
+    -webkit-box-shadow: -0.25em 0 0 #403A5A, 0.25em 0 0 #403A5A, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.25em 0 0 #403A5A, 0.25em 0 0 #403A5A, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.25em 0 0 #403A5A, 0.25em 0 0 #403A5A, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+}
+
+.light-theme-sm-header {
+    width: 100%;
+    background-color: #643C56;
+    -webkit-box-shadow: -0.25em 0 0 #643C56, 0.25em 0 0 #643C56, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.25em 0 0 #643C56, 0.25em 0 0 #643C56, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.25em 0 0 #643C56, 0.25em 0 0 #643C56, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+}
+
+.highlight-theme-sm-header {
+    width: 100%;
+    background-color: #eb9114;
+    -webkit-box-shadow: -0.25em 0 0 #eb9114, 0.25em 0 0 #eb9114, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.25em 0 0 #eb9114, 0.25em 0 0 #eb9114, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.25em 0 0 #eb9114, 0.25em 0 0 #eb9114, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+}
+
+.accent-theme-sm-header {
+    width: 100%;
+    background-color: #79C99E;
+    -webkit-box-shadow: -0.25em 0 0 #79C99E, 0.25em 0 0 #79C99E, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    -moz-box-shadow: -0.25em 0 0 #79C99E, 0.25em 0 0 #79C99E, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+    box-shadow: -0.25em 0 0 #79C99E, 0.25em 0 0 #79C99E, 0 0.25em 0.3em rgba(26, 26, 26, 0.5);
+}
+
+/* Inner-div Shadow*/
+.inner-div-shadow {
+    -webkit-box-shadow: inset 0 0 1em 0.1em rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0 0 1em 0.1em rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 0 1em 0.1em rgba(0, 0, 0, 0.75);
+}
+
+/* Inner-div Shadow Small*/
+.inner-div-shadow-sm {
+    -webkit-box-shadow: inset 0 0 0.5em 0.015em rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0 0 0.5em 0.015em rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 0 0.5em 0.015em rgba(0, 0, 0, 0.75);
+}
+
+/*Outer-div Shadow*/
+.outer-div-shadow {
+    -webkit-box-shadow: 0 0.4em 0.5em #717579;
+    -moz-box-shadow: 0 0.4em 0.5em #717579;
+    box-shadow: 0 0.4em 0.5em #717579;
+}
+
+/*Outer-div Shadow Small*/
+.outer-div-shadow-sm {
+    -webkit-box-shadow: 0 0.2em 0.5em #555555;
+    -moz-box-shadow: 0 0.2em 0.5em #555555;
+    box-shadow: 0 0.2em 0.5em #555555;
+}
+
+/*Specific Color Needs*/
+
+.left-menu-slide-btn {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.left-menu-panel {
+    background-color: rgba(255, 255, 255, 0.5);
+}

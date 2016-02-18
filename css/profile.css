@@ -1,0 +1,131 @@
+/*Profile CSS*/
+
+.avatar {
+    /*margin: 0 0 20px 0;*/
+    padding: 10px;
+}
+
+.avatar > .overlay-sm-bottom-right {
+    bottom: 0.5em;
+    right: 0.5em;
+}
+
+#avatar-img {
+    max-height: 365px;
+    overflow-y: hidden;
+}
+
+.profile > div {
+    font-family: Rockwell, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.5em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.profile > div > div {
+    padding-top: 0.5em;
+    min-height: 90px;
+}
+
+.profile > div > div > .overlay-sm-top-right {
+    color: snow;
+    margin-top: 0.35em;
+}
+
+.date-text > strong, .nickname-text > strong, .phone-text > strong, .address-text > strong {
+    font-size: 0.75em;
+}
+
+.date-text > span, .nickname-text > span, .phone-text > span, .address-text > span {
+    font-size: 1em;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    cursor: inherit;
+    display: block;
+}
+
+input[readonly] {
+    background-color: white !important;
+    cursor: text !important;
+}
+
+
+/*Recipe Filter CSS*/
+
+.recipe-filter-row > div {
+    padding: 1em 0.5em 1em 0.5em;
+    margin-bottom: 1em;
+}
+
+
+/*Recipe CSS*/
+
+.recipe-img, .recipe-name-label {
+    width: 100%;
+    cursor: pointer;
+}
+
+.recipe-name-label p {
+    font-family: Rockwell, Georgia, "Times New Roman", Times, serif;
+    font-size: 1.35em;
+    padding: 0.15em 0 0.15em 0;
+    margin-top: 0.75em;
+    margin-right: 2em;
+}
+
+.recipe-favorite span{
+    margin-top: 0.85em;
+}
+
+.recipe-favorite span:hover {
+    color: goldenrod;
+}
+
+.recipe-favorite span.fav-select:hover {
+    color: lightgray;
+}
+
+.fav-select {
+    color: gold;
+}
+
+.recipe-detail {
+    margin: 0.25em;
+}
+
+/*Other CSS*/
+
+.recipe-scroll-btn {
+    margin-top: 2em;
+}
+
+.hide-row {
+    margin-top: 1em;
+}
+
+.isotope-grid-bg {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
+
+

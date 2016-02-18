@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'templates/base.html' %}
+
+{% block css %}
+{#    <link rel="stylesheet" type="text/css" href="css/gallery.css"/>#}
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="js/gallery.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.0/imagesloaded.pkgd.min.js"></script>
+    {#    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>#}
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+    <script type="text/javascript"
+            src="http://rawgit.com/metafizzy/isotope-packery/master/packery-mode.pkgd.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 content-col inner-div-shadow bg-theme-gray rounded">
+            <div class="row">
+                <div class="page-header primary-header text-center">
+                    <h1 class="text-shadow-lg">Gallery</h1>
+                </div>
+                <div style="padding: 1%;">
+                    <div class="isotope-grid">
+                        <div class="grid-sizer"></div>
+                        {% for image in images %}
+                            <div class="grid-item">
+                                {# Image#}
+                                <div class="outer-div-shadow-sm rounded">
+                                    <img style="width: 100%" class="gallery-img rounded" src="{{ image.url }}">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% extends 'templates/base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="css/recipe.css"/>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="js/recipe.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 content-col bg-theme-gray inner-div-shadow rounded">
+            <div class="row">
+                {#        Recipe Header#}
+                <div class="page-header primary-header">
+                    <h1 data-id="{{ urlID }}" class="recipe-name text-shadow-lg text-center">{{ name }}</h1>
+
+                    <div class="overlay-top-right">
+                        <div class="recipe-favorite text-shadow-sm text-right">
+                            <span data-studentID="{{ studentID }}" data-recipeID="{{ urlID }}"
+                                  class="btn glyphicon glyphicon-star fav-recipe {% if favorite %}fav-select{% endif %}"></span>
+                        </div>
+                    </div>
+                    <div class="recipe-description text-center text-white">
+                        <p>{{ description }}</p>
+                    </div>
+                    <div class="recipe-info">
+                        <h3 class="text-center">
+                            <button class="btn btn-xs btn-success div-shadow"><strong>Serves:</strong>&nbsp;&nbsp;<span
+                                    style="margin-top: -2px;" class="badge">{{ serves }}</span></button>
+                            <button class="btn btn-xs btn-warning div-shadow"><strong>Prep
+                                Time:</strong>&nbsp;&nbsp;<span style="margin-top: -2px;"
+                                                                class="badge">{% if prep_time.hours %}
+                                {{ prep_time.hours }}h&nbsp;{{ prep_time.minutes }}m{% else %}{{ prep_time.minutes }}
+                                &nbsp;min{% endif %}</span></button>
+                            <button class="btn btn-xs btn-danger div-shadow"><strong>Cook
+                                Time:</strong>&nbsp;&nbsp;<span style="margin-top: -2px;"
+                                                                class="badge">{% if cook_time.hours %}
+                                {{ cook_time.hours }}h&nbsp;{{ cook_time.minutes }}m{% else %}{{ cook_time.minutes }}
+                                &nbsp;min{% endif %}</span></button>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            {#        Recipe Content#}
+            <div class="row">
+                {#                Ingredient Content#}
+                <div class="col-lg-4 col-sm-12">
+                    <div class="page-header page-sub-header dark-theme-sm-header">
+                        <h1 class="text-shadow-sm text-white text-center"> Ingredients </h1>
+                    </div>
+                    <ul class="list-group outer-div-shadow">
+                        {% for ingredient in ingredients %}
+                            <li class="list-group-item selectable ingredient-list-item btn"
+                                {% if ingredient.note %}data-content="{{ ingredient.note }}" rel="popover"
+                                data-placement="bottom auto" data-trigger="hover"{% endif %}
+                                    >
+                                <span class="badge pull-left">{{ ingredient.amount }}{% if ingredient.unit %}&nbsp;
+                                    {{ ingredient.unit }}{% endif %}</span>
+
+                                <div><p class="text-left"> {{ ingredient.name }} </p></div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {#                Direction Content#}
+                <div class="col-lg-8 col-sm-12">
+                    <div class="page-header page-sub-header accent-theme-sm-header">
+                        <h1 class="text-shadow-sm text-white text-center"> Directions </h1>
+                    </div>
+                    <ul class="list-group outer-div-shadow-sm">
+                        {% for direction in directions %}
+                            <li class="list-group-item selectable direction-list-item btn">
+                                <span class="badge pull-left">{{ loop.index }}</span>
+
+                                <div><p class="text-left"> {{ direction.instruction }} </p></div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {#               Utilities Content#}
+                {% if utilities %}
+                    <div class="col-lg-8 col-sm-12">
+                        <div class="page-header page-sub-header light-theme-sm-header">
+                            <h1 class="text-shadow-sm text-white text-center"> Utilities </h1>
+                        </div>
+                        <ul class="list-group outer-div-shadow-sm">
+                            {% for utility in utilities %}
+                                <li class="list-group-item utility-list-item">
+                                    <a href="http://{{ utility.link }}" target="_blank">
+                                        <span class="badge alert-default pull-left">{{ utility.name }}</span>
+                                    </a>
+
+                                    <div>
+                                        <p class="text-left"> {{ utility.function }} </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {# Notes Content #}
+                <div class="col-xs-12">
+                    <div class="page-header page-sub-header primary-sm-header">
+                        <h1 class="text-shadow-sm text-white text-center"> Your Notes </h1>
+                    </div>
+                    <ul data-recipeID="{{ urlID }}" data-studentID="{{ studentID }}"
+                        class="list-group outer-div-shadow-sm">
+                        {% for note in notes %}
+                            <li class="list-group-item notes-list-item clearfix">
+                                <p>{{ note.note }}</p>
+                                <span class="pull-right remove-note-btn">
+                                    <button class="btn btn-sm btn-danger">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </span>
+                            </li>
+                        {% endfor %}
+                        <li class="list-group-item">
+                            <div class="input-group">
+                                <label class="sr-only" for="new-note-input"></label>
+                                <input required type="text"
+                                       class="form-control"
+                                       name="new-note-input"
+                                       id="new-note-input"
+                                       placeholder="Add Your Notes Here">
+                            <span class="input-group-btn new-note-btn">
+                                <button type="button" class="btn btn-success text-shadow">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-md-2 col-lg-2"></div>
+    </div>
+{% endblock %}

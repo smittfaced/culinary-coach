@@ -1,0 +1,108 @@
+
+.fav-select {
+    color: gold;
+}
+
+.fav-select:hover {
+    color: snow;
+}
+
+/**/
+/*Recipe Header CSS*/
+/**/
+.recipe-info h3 {
+    margin-top: 0;
+}
+
+.recipe-info h3 button {
+    margin: 0 5px 0 5px;
+    min-width: 100px;
+}
+
+.recipe-name {
+    margin-right: 1.25em;
+}
+
+.recipe-favorite span {
+    margin-top: 0.25em;
+    font-size: 3em;
+}
+
+.recipe-description {
+    padding: 0 1.5em 0 1.5em;
+}
+
+/**/
+/*Directions List CSS*/
+/**/
+.direction-list-item {
+    white-space: normal;
+}
+
+.direction-list-item span {
+    margin-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+
+}
+
+.direction-list-item p {
+    padding-left: 32px;
+}
+
+/**/
+/*Ingredients List CSS*/
+/**/
+.ingredient-list-item {
+    white-space: normal;
+}
+
+.ingredient-list-item span {
+    margin-right: 10px;
+    padding: 10px 15px 10px 15px;
+}
+
+.ingredient-list-item div {
+    padding-top: 5px;
+    margin-left: 100px;
+}
+
+.popover {
+    background-color: #f39c12;
+    color: white;
+}
+
+.popover.bottom .arrow:after {
+    border-bottom-color: #f39c12;
+}
+
+/**/
+/*Utilities List CSS*/
+/**/
+.utility-list-item {
+    white-space: normal;
+}
+
+.utility-list-item span {
+    margin-right: 10px;
+    padding: 10px 15px 10px 15px;
+}
+
+.utility-list-item div {
+    padding-top: 5px;
+    margin-left: 200px;
+}
+
+/**/
+/*Notes List CSS*/
+/**/
+.remove-note-btn {
+    position: absolute;
+    top: 7px;
+    right: 23px;
+}
+
+.notes-list-item p {
+    padding-right: 50px;
+}
+
