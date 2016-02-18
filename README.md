@@ -10,18 +10,18 @@ Recipe webapp for Clients to access past recipes from Culinary Coach sessions.
   hasn't opened yet. (Fall 2016)
 
 Google App Engine Project
-  -- Blobstore, NDB, Google Images Service
-  -- Python Backend (python27)
-  -- Jinja2 Templated HTML
-  -- Bootstrap 3 Framework
-  -- JS/JQuery Scripts
-   - JQuery-ui 1.11.4
-   - BigSlide 0.9.1
-   - Choosen 1.4.2
-   - ImagesLoaded 4.1.0
-   - Isotope 2.2.2
-   - BootstrapSelect 1.9.4
-   - Bootstrap Formhelpers 2.3.0
+  - Blobstore, NDB, Google Images Service
+  - Python Backend (python27)
+  - Jinja2 Templated HTML
+  - Bootstrap 3 Framework
+  - JS/JQuery Scripts
+    - JQuery-ui 1.11.4
+    - BigSlide 0.9.1
+    - Choosen 1.4.2
+    - ImagesLoaded 4.1.0
+    - Isotope 2.2.2
+    - BootstrapSelect 1.9.4
+    - Bootstrap Formhelpers 2.3.0
   
   
   
